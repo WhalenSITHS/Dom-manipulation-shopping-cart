@@ -187,7 +187,7 @@ const filterButtons = {
 });
  */
 
-const cards = document.querySelectorAll(".product-cards");
+const cards = document.querySelectorAll(".cards");
 Object.values(filterButtons).forEach((button) => {
   button.addEventListener("click", (event) => {
     event.preventDefault();
