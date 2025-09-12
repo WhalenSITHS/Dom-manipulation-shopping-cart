@@ -148,7 +148,7 @@ products.forEach((item) => {
   container.insertAdjacentHTML(
     "beforeend",
     `
-      <div class="card bg-base-100 w-96 shadow-sm my-12 h-[550px]" data-category="${
+      <div class="product-card card bg-base-100 w-96 shadow-sm my-12 h-[550px]" data-category="${
         item.category
       }" data-title="${item.name}">
         <figure>
@@ -187,7 +187,7 @@ const filterButtons = {
 });
  */
 
-const cards = document.querySelectorAll(".card");
+const cards = document.querySelectorAll(".product-cards");
 Object.values(filterButtons).forEach((button) => {
   button.addEventListener("click", (event) => {
     event.preventDefault();
