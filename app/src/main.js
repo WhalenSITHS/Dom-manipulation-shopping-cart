@@ -15,7 +15,7 @@ const products = [
     price: 109.99,
     image: "/img/brown-sneaker.avif",
     alt: "Brown leather sneakers",
-    popularity: 3150,
+    popularity: 8421,
   },
   {
     name: "Red Nike Sneakers",
@@ -191,9 +191,10 @@ function renderLeaderboard() {
           <p class="top-selling-sales">${item.popularity.toLocaleString()} sold</p>
         </div>
       </div>
-      `
-    );
-  });
+    </div>
+    `,
+  );
+});
 }
 
 renderLeaderboard();
@@ -227,7 +228,7 @@ products.forEach((item) => {
           </div>
         </div>
       </div>
-      `
+      `,
   );
 });
 
@@ -299,7 +300,7 @@ function showCart(item) {
         <td>${item.name}</td>
         <td class="text-right">$${item.price.toFixed(2)}</td>
       </tr>
-    `
+    `,
   );
 }
 function totalCart(cart) {
