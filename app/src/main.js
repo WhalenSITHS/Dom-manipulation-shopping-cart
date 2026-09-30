@@ -174,25 +174,29 @@ function selectionSort(arr) {
 }
 
 // Render top 5 selling products
-const topSelling = selectionSort(products).slice(0, 5);
 const topSellingContainer = document.querySelector(".top-selling-container");
 
-topSelling.forEach((item, index) => {
-  topSellingContainer.insertAdjacentHTML(
-    "beforeend",
-    `
-    <div class="top-selling-card">
-      <span class="rank-badge">#${index + 1}</span>
-      <img src="${item.image}" alt="${item.alt}" />
-      <div class="top-selling-info">
-        <h3>${item.name}</h3>
-        <p class="top-selling-price">$${item.price.toFixed(2)}</p>
-        <p class="top-selling-sales">${item.popularity.toLocaleString()} sold</p>
+function renderLeaderboard() {
+  topSellingContainer.innerHTML = "";
+  selectionSort(products).slice(0, 5).forEach((item, index) => {
+    topSellingContainer.insertAdjacentHTML(
+      "beforeend",
+      `
+      <div class="top-selling-card">
+        <span class="rank-badge">#${index + 1}</span>
+        <img src="${item.image}" alt="${item.alt}" />
+        <div class="top-selling-info">
+          <h3>${item.name}</h3>
+          <p class="top-selling-price">$${item.price.toFixed(2)}</p>
+          <p class="top-selling-sales">${item.popularity.toLocaleString()} sold</p>
+        </div>
       </div>
-    </div>
-    `
-  );
-});
+      `
+    );
+  });
+}
+
+renderLeaderboard();
 
 //Put Cards on screen
 const container = document.querySelector(".card-container");
@@ -315,9 +319,11 @@ document.querySelectorAll(".add").forEach((button) => {
     const productObj = products.find((prod) => prod.name === selectedProduct);
     //console.log(productObj);
     cart.push(productObj);
+    productObj.popularity++;
     console.log(cart);
     showToast(`${productObj.name} added to cart`);
     showCart(productObj);
     totalCart(cart);
+    renderLeaderboard();
   });
 });
