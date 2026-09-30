@@ -7,6 +7,7 @@ const products = [
     price: 89.99,
     image: "/img/blue-sneaker.avif",
     alt: "Blue athletic sneakers",
+    popularity: 8420,
   },
   {
     name: "Brown Leather Sneakers",
@@ -14,6 +15,7 @@ const products = [
     price: 109.99,
     image: "/img/brown-sneaker.avif",
     alt: "Brown leather sneakers",
+    popularity: 3150,
   },
   {
     name: "Red Nike Sneakers",
@@ -21,6 +23,7 @@ const products = [
     price: 99.99,
     image: "/img/red-sneaker.jpg",
     alt: "Red Nike sneakers",
+    popularity: 9870,
   },
   {
     name: "Designer Jeans",
@@ -28,6 +31,7 @@ const products = [
     price: 129.99,
     image: "/img/jeans.avif",
     alt: "Designer denim jeans",
+    popularity: 6230,
   },
   {
     name: "Performance Workout Pants",
@@ -35,6 +39,7 @@ const products = [
     price: 79.99,
     image: "/img/workout pants.avif",
     alt: "Workout pants in black fabric",
+    popularity: 4890,
   },
   {
     name: "Yoga Flex Pants",
@@ -42,6 +47,7 @@ const products = [
     price: 69.99,
     image: "/img/yoga pants.avif",
     alt: "Yoga pants for comfort and flexibility",
+    popularity: 2340,
   },
   {
     name: "Classic White Shirt",
@@ -49,6 +55,7 @@ const products = [
     price: 49.99,
     image: "/img/shirts1.avif",
     alt: "Classic white shirt",
+    popularity: 7760,
   },
   {
     name: "Blue Casual Shirt",
@@ -56,6 +63,7 @@ const products = [
     price: 54.99,
     image: "/img/shirts2.avif",
     alt: "Blue casual shirt",
+    popularity: 5120,
   },
   {
     name: "Graphic Tee Shirt",
@@ -63,6 +71,7 @@ const products = [
     price: 39.99,
     image: "/img/shirts3.avif",
     alt: "Graphic tee shirt",
+    popularity: 11300,
   },
   {
     name: "Plaid Button-down Shirt",
@@ -70,6 +79,7 @@ const products = [
     price: 59.99,
     image: "/img/shirts4.avif",
     alt: "Plaid button-down shirt",
+    popularity: 1890,
   },
 
   // 🔥 New additions
@@ -79,6 +89,7 @@ const products = [
     price: 57.99,
     image: "/img/shirts5.avif",
     alt: "Slim fit black dress shirt",
+    popularity: 3670,
   },
   {
     name: "Striped Polo Shirt",
@@ -86,6 +97,7 @@ const products = [
     price: 44.99,
     image: "/img/shirts6.avif",
     alt: "Striped polo shirt",
+    popularity: 2980,
   },
   {
     name: "Casual Sweatpants",
@@ -93,6 +105,7 @@ const products = [
     price: 74.99,
     image: "/img/sweatpants.avif",
     alt: "Comfortable casual sweatpants",
+    popularity: 6540,
   },
   {
     name: "White Sneaker Classic",
@@ -100,6 +113,7 @@ const products = [
     price: 92.99,
     image: "/img/white-sneaker.avif",
     alt: "Classic white sneakers",
+    popularity: 9120,
   },
   {
     name: "Luxury Gold Watch",
@@ -107,6 +121,7 @@ const products = [
     price: 249.99,
     image: "/img/watches1.avif",
     alt: "Luxury gold wristwatch",
+    popularity: 4230,
   },
   {
     name: "Silver Steel Watch",
@@ -114,6 +129,7 @@ const products = [
     price: 199.99,
     image: "/img/watches2.avif",
     alt: "Silver steel wristwatch",
+    popularity: 5880,
   },
   {
     name: "Leather Strap Watch",
@@ -121,6 +137,7 @@ const products = [
     price: 179.99,
     image: "/img/watches3.avif",
     alt: "Leather strap wristwatch",
+    popularity: 3340,
   },
   {
     name: "Modern Minimal Watch",
@@ -128,6 +145,7 @@ const products = [
     price: 159.99,
     image: "/img/watches4.avif",
     alt: "Minimal modern wristwatch",
+    popularity: 7090,
   },
   {
     name: "Sport Digital Watch",
@@ -135,8 +153,47 @@ const products = [
     price: 139.99,
     image: "/img/watches5.avif",
     alt: "Sport style digital watch",
+    popularity: 8650,
   },
 ];
+// Selection sort — sorts descending by popularity (highest sales first)
+function selectionSort(arr) {
+  const sorted = [...arr];
+  for (let i = 0; i < sorted.length; i++) {
+    let maxIdx = i;
+    for (let j = i + 1; j < sorted.length; j++) {
+      if (sorted[j].popularity > sorted[maxIdx].popularity) {
+        maxIdx = j;
+      }
+    }
+    if (maxIdx !== i) {
+      [sorted[i], sorted[maxIdx]] = [sorted[maxIdx], sorted[i]];
+    }
+  }
+  return sorted;
+}
+
+// Render top 5 selling products
+const topSelling = selectionSort(products).slice(0, 5);
+const topSellingContainer = document.querySelector(".top-selling-container");
+
+topSelling.forEach((item, index) => {
+  topSellingContainer.insertAdjacentHTML(
+    "beforeend",
+    `
+    <div class="top-selling-card">
+      <span class="rank-badge">#${index + 1}</span>
+      <img src="${item.image}" alt="${item.alt}" />
+      <div class="top-selling-info">
+        <h3>${item.name}</h3>
+        <p class="top-selling-price">$${item.price.toFixed(2)}</p>
+        <p class="top-selling-sales">${item.popularity.toLocaleString()} sold</p>
+      </div>
+    </div>
+    `
+  );
+});
+
 //Put Cards on screen
 const container = document.querySelector(".card-container");
 
