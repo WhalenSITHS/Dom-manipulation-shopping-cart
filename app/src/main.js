@@ -15,7 +15,7 @@ const products = [
     price: 109.99,
     image: "/img/brown-sneaker.avif",
     alt: "Brown leather sneakers",
-    popularity: 3150,
+    popularity: 8421,
   },
   {
     name: "Red Nike Sneakers",
@@ -190,7 +190,7 @@ topSelling.forEach((item, index) => {
         <p class="top-selling-sales">${item.popularity.toLocaleString()} sold</p>
       </div>
     </div>
-    `
+    `,
   );
 });
 
@@ -223,7 +223,7 @@ products.forEach((item) => {
           </div>
         </div>
       </div>
-      `
+      `,
   );
 });
 
@@ -295,7 +295,7 @@ function showCart(item) {
         <td>${item.name}</td>
         <td class="text-right">$${item.price.toFixed(2)}</td>
       </tr>
-    `
+    `,
   );
 }
 function totalCart(cart) {
